@@ -1,21 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/*Nome: Felipe Augusto Pessôa Vianna
+  Matrícula: 0050017091
+*/
+import React, { useState } from "react";
+import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Menu from "./pages/menu";
+import Game from "./pages/game";
+import GameOver from "./pages/endgame";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+console.disableYellowBox = true;
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Merda voadora</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="HomeMenu" component={Menu} />
+        <Stack.Screen
+          name="Game"
+          component={Game}
+          options={{ title: "Game" }}
+        />
+        <Stack.Screen
+          name="GameOver"
+          component={GameOver}
+          options={{ title: "GameOver" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
